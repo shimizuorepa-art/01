@@ -12,7 +12,7 @@
         <div class="tear-logo" aria-label="TEAR">TEAR</div>
         <div>
           <p>ティアの会連動アプリ 提案</p>
-          <h1>お見送り依頼を、当日はワンタップにする。</h1>
+          <h1><span>お見送り依頼を、当日は</span><span>ワンタップに。</span></h1>
         </div>
       </div>
       <div class="support-strip" aria-label="24時間365日受付">
@@ -24,47 +24,51 @@
         <a href="#first-call">初動設計</a>
         <a href="#load-layers">入力階層</a>
         <a href="#operations">管理画面</a>
-        <a href="#research">反映した公式情報</a>
+        <a href="#research">公式情報</a>
       </nav>
     </header>
 
     <main>
       <section id="demo" class="presentation-hero">
         <div class="hero-copy">
-          <p class="eyebrow">葬儀会館 TEAR / お急ぎ導線連動</p>
-          <h2>当日ワンタップで会館へ繋ぐための準備。</h2>
+          <p class="eyebrow">ティアの会の登録情報から、当日の連絡を一度で</p>
+          <h2><span>会館へつながる</span><span>準備。</span></h2>
           <p>
-            ティアの会の会員情報、デジタルティアカード、生き方応援ポイント、
-            お急ぎ時に電話で伺う内容をつなげ、当日は会館へ正確な初動情報を届けます。
+            ティアの会の会員情報、デジタルティアカード、お急ぎ時に電話で伺う内容をつなげ、
+            いざという時は会館へ必要なことだけを静かに届けます。
           </p>
           <div class="hero-actions">
-            <button id="startRequestFromHero" type="button">ワンタップ依頼を再生</button>
+            <button id="startRequestFromHero" type="button">依頼後の画面を見る</button>
             <a href="#research">調査ベースを見る</a>
           </div>
         </div>
-        <div class="hero-metrics" aria-label="設計の重点">
-          <article class="urgent-metric">
-            <span>24h</span>
-            <p>お急ぎ導線をアプリから即時化</p>
-          </article>
-          <article>
-            <span>6項目</span>
-            <p>電話で伺う内容を事前登録化</p>
-          </article>
-          <article>
-            <span>1 tap</span>
-            <p>当日は会館へ繋ぐだけ</p>
-          </article>
-          <article class="phone-fallback">
-            <span>電話</span>
-            <p>不安な時はすぐ無料相談へ戻せる</p>
-          </article>
+        <div class="care-panel" aria-label="安心の設計">
+          <p>最初の数分を、静かに支える。</p>
+          <span>登録済みの内容を会館へ渡したら、画面は最小限に。ご家族は担当者からの連絡を待つだけにします。</span>
+          <div class="hero-metrics" aria-label="設計の重点">
+            <article class="urgent-metric">
+              <span>24h</span>
+              <p>電話へすぐ戻れる安心を残す</p>
+            </article>
+            <article>
+              <span>6項目</span>
+              <p>聞き取りの負担を事前に軽くする</p>
+            </article>
+            <article>
+              <span>1 tap</span>
+              <p>当日は会館へつなぐだけ</p>
+            </article>
+            <article class="phone-fallback">
+              <span>電話</span>
+              <p>不安な時は人の声へすぐ切り替える</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section id="first-call" class="first-call-map" aria-label="初動負荷を減らす設計">
         <header>
-          <p>First call reduction</p>
+          <p>初回電話の負担を減らす</p>
           <h2>電話で伺う6項目を、当日の聞き取りから外す。</h2>
           <span>未確定の部分だけ、担当者がやさしく確認します。</span>
         </header>
@@ -80,7 +84,7 @@
 
       <section id="load-layers" class="load-layers" aria-label="事前登録の負担階層">
         <header>
-          <p>Preparation hierarchy</p>
+          <p>準備の負担を分ける</p>
           <h2>登録は階層化する。ただし目的は、当日会館へ繋ぐことだけ。</h2>
           <span>必須は6項目だけ。任意情報も、当日の初動連絡に役立つものへ絞ります。</span>
         </header>
@@ -145,9 +149,9 @@
               </div>
 
               <section class="request-card">
-                <p>もしもの時は、このボタンだけで大丈夫です。</p>
+                  <p>もしもの時は、このボタンだけで大丈夫です。</p>
                 <button id="requestButton" class="request-button" type="button">お見送りの依頼</button>
-                <small>会館へ繋ぐための情報だけを、担当者へ共有します。</small>
+                <small>会館へつなぐための情報だけを、担当者へ共有します。</small>
               </section>
 
               <section class="prep-brief">
@@ -160,7 +164,7 @@
 
               <section class="prep-ladder">
                 <header>
-                  <h3>準備の進み方</h3>
+                  <h3>今日のための準備</h3>
                   <span>今はLevel 1だけで十分</span>
                 </header>
                 <ol>
@@ -229,11 +233,15 @@
         <section id="operations" class="admin-console" aria-label="ティア側管理画面">
           <header class="console-header">
             <div>
-              <p>TEAR Operations Console</p>
+              <p>会館スタッフ画面</p>
               <h2>新規お見送り依頼</h2>
             </div>
             <div id="consoleStatus" class="console-status waiting">待機中</div>
           </header>
+          <div class="message-bar info" role="status">
+            <strong>初動確認のみに絞っています</strong>
+            <span>登録済みの6項目から受付票を作成し、未確定事項だけを上に表示します。</span>
+          </div>
 
           <div class="console-grid">
             <aside class="request-queue">
@@ -363,7 +371,7 @@
 
       <section class="system-flow" aria-label="裏側で起きること">
         <header>
-          <p>Behind the button</p>
+          <p>ボタンの裏で進むこと</p>
           <h2>ユーザーには見せず、裏で進む処理</h2>
         </header>
         <div class="flow-columns">
@@ -398,7 +406,7 @@
 
       <section id="research" class="research">
         <header>
-          <p>Research base</p>
+          <p>公式情報から反映したこと</p>
           <h2>ティア公式情報を反映したポイント</h2>
         </header>
         <div class="research-grid">
