@@ -1,41 +1,40 @@
 /* ===========================================================
    ティアの会連動 お見送り依頼アプリ
-   リデザイン: 影なし / 落ち着いた葬儀トーン / 3画面スイッチ
-   階層は「線・余白・面の濃淡・タイポgrafi・罫線」で作る
+   リデザイン v2: 引き算の装飾 / ティア・ブランド紫(#640087)+金
+   階層は「面の濃淡・余白・ヘアライン区切り・タイポ」で作る。
+   枠線は最小限。強調は1領域につき1つだけ。
    =========================================================== */
 
 :root {
   /* surfaces */
   --paper: #ffffff;
-  --paper-soft: #f6faf7;
-  --paper-tint: #eef5f0;
-  --gold-soft: #fbf3df;
-  --bezel: #10251b;
+  --paper-soft: #faf8fb;
+  --paper-tint: #f4eef7;
+  --purple-soft: #f1e9f6;
+  --gold-soft: #f6efdc;
 
-  /* lines */
-  --line: #d7e3da;
-  --line-soft: #e7eee9;
-  --line-strong: #c1d2c6;
+  /* hairlines (薄い紫グレー) */
+  --line: #e7e0ec;
+  --line-soft: #efeaf3;
+  --line-strong: #d8cde0;
 
   /* text */
-  --ink: #14271d;
-  --ink-2: #33473b;
-  --muted: #5d6f64;
+  --ink: #241a2b;
+  --ink-2: #463a50;
+  --muted: #6b6075;
 
-  /* brand */
-  --green: #00843d;
-  --green-dark: #005b2e;
-  --green-soft: #e6f2ea;
-  --gold: #b0801f;
-  --gold-ink: #6f5417;
+  /* brand: ティア江戸紫 + 金 */
+  --purple: #640087;
+  --purple-dark: #4a0064;
+  --gold: #a87a1c;
+  --gold-ink: #6f5217;
 
   /* scale */
   --r-s: 4px;
-  --r-m: 8px;
-  --r-l: 14px;
+  --r-m: 10px;
+  --r-l: 16px;
   --r-pill: 999px;
 
-  /* type */
   --serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
   --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic",
     "YuGothic", "Noto Sans JP", sans-serif;
@@ -66,6 +65,7 @@ h1,
 h2,
 h3,
 h4,
+h5,
 p {
   margin-top: 0;
 }
@@ -82,7 +82,6 @@ button {
   cursor: pointer;
   transition:
     background-color var(--dur) var(--ease),
-    border-color var(--dur) var(--ease),
     color var(--dur) var(--ease);
 }
 
@@ -101,7 +100,7 @@ svg {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(0, 132, 61, 0.45);
+  outline: 3px solid rgba(100, 0, 135, 0.4);
   outline-offset: 2px;
 }
 
@@ -131,7 +130,7 @@ svg {
   place-items: center;
   border-radius: var(--r-s);
   color: #fff;
-  background: var(--green-dark);
+  background: var(--purple);
   font-size: 19px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -139,7 +138,7 @@ svg {
 
 .brand-text p {
   margin: 0 0 2px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -157,17 +156,15 @@ svg {
   display: grid;
   gap: 1px;
   padding: 8px 16px;
-  border: 1px solid var(--gold);
   border-radius: var(--r-m);
   background: var(--gold-soft);
-  color: var(--green-dark);
+  color: var(--gold-ink);
   text-align: right;
 }
 
 .support span {
   font-size: 11px;
   font-weight: 800;
-  color: var(--gold-ink);
 }
 
 .support strong {
@@ -186,12 +183,12 @@ svg {
   max-width: 760px;
   margin-bottom: 28px;
   padding-left: 18px;
-  border-left: 3px solid var(--green);
+  border-left: 3px solid var(--purple);
 }
 
 .intro .eyebrow {
   margin: 0 0 8px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -203,7 +200,7 @@ svg {
   font-size: clamp(30px, 4vw, 46px);
   font-weight: 700;
   line-height: 1.18;
-  color: var(--green-dark);
+  color: var(--purple-dark);
 }
 
 .intro .lead {
@@ -216,11 +213,10 @@ svg {
 /* ---------------- View switch (segmented) ---------------- */
 .view-switch {
   display: inline-flex;
-  gap: 4px;
+  gap: 2px;
   padding: 4px;
-  border: 1px solid var(--line-strong);
   border-radius: var(--r-pill);
-  background: var(--paper);
+  background: var(--paper-tint);
 }
 
 .view-switch button {
@@ -238,13 +234,12 @@ svg {
 }
 
 .view-switch button:hover {
-  color: var(--green-dark);
-  background: var(--paper-tint);
+  color: var(--purple-dark);
 }
 
 .view-switch button[aria-selected="true"] {
   color: #fff;
-  background: var(--green);
+  background: var(--purple);
 }
 
 .view-switch button .dot {
@@ -252,23 +247,23 @@ svg {
   height: 7px;
   border-radius: var(--r-pill);
   background: currentColor;
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 .view-switch button[aria-selected="true"] .dot {
   opacity: 1;
 }
 
-/* ---------------- View head (changes per view) ---------------- */
+/* ---------------- View head ---------------- */
 .view-head {
-  margin: 26px 0 18px;
+  margin: 26px 0 20px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
 }
 
 .view-head .kicker {
   margin: 0 0 6px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -295,38 +290,53 @@ svg {
   display: none;
 }
 
+.view:not([hidden]) {
+  animation: viewfade 220ms var(--ease) both;
+}
+
+@keyframes viewfade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .view-phone {
   display: grid;
   grid-template-columns: 392px minmax(0, 1fr);
-  gap: 36px;
+  gap: 40px;
   align-items: start;
 }
 
 .view-notes {
-  padding-top: 6px;
+  padding-top: 4px;
 }
 
 .view-notes h4 {
-  margin: 0 0 14px;
+  margin: 0 0 8px;
   font-size: 15px;
   font-weight: 800;
-  color: var(--green-dark);
+  color: var(--purple-dark);
 }
 
 .view-notes ul {
-  display: grid;
-  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .view-notes li {
-  padding: 14px 16px 14px 18px;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--green);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  padding: 16px 0 16px 16px;
+  border-left: 3px solid var(--purple);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.view-notes li:last-child {
+  border-bottom: 0;
 }
 
 .view-notes li strong {
@@ -345,7 +355,7 @@ svg {
   border-left-color: var(--gold);
 }
 
-/* ---------------- Phone device (no shadow) ---------------- */
+/* ---------------- Phone device (薄い1枠のみ) ---------------- */
 .device-phone {
   width: 392px;
   border: 1px solid var(--line-strong);
@@ -370,7 +380,6 @@ svg {
   position: relative;
   height: 752px;
   overflow: hidden;
-  border-radius: 0;
   background: var(--paper);
 }
 
@@ -379,13 +388,12 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 20px 12px;
-  border-bottom: 1px solid var(--line-soft);
+  padding: 22px 22px 12px;
 }
 
 .phone-header .small {
   margin: 0 0 3px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.03em;
@@ -403,21 +411,20 @@ svg {
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
   border-radius: var(--r-pill);
-  color: var(--green-dark);
-  background: var(--paper);
+  color: var(--purple-dark);
+  background: var(--paper-tint);
 }
 
 .icon-round:hover {
-  background: var(--paper-tint);
+  background: var(--purple-soft);
 }
 
 .screen-scroll {
   position: absolute;
   inset: 85px 0 72px;
   overflow-y: auto;
-  padding: 18px 18px 20px;
+  padding: 14px 22px 22px;
 }
 
 .screen-scroll.full {
@@ -449,62 +456,88 @@ svg {
 }
 
 .phone-nav button.active {
-  color: var(--green);
+  color: var(--purple);
 }
 
-/* ---------------- Customer: member card ---------------- */
+/* ---------------- Customer: member card (主役カードは1枚だけ強い) ---------------- */
 .member-card {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 20px;
+  padding: 20px 22px 16px;
   border-radius: var(--r-l);
   color: #fff;
-  background: linear-gradient(135deg, #0a3f25, var(--green-dark));
+  background:
+    radial-gradient(120% 140% at 88% 0%, rgba(240, 212, 136, 0.16), transparent 46%),
+    linear-gradient(135deg, var(--purple-dark), var(--purple));
+}
+
+.member-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
 
 .member-card .small {
-  margin: 0 0 6px;
-  color: rgba(255, 255, 255, 0.74);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 11px;
   font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.member-card .mark {
+  color: #f0d488;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
 .member-card h3 {
-  margin: 0 0 8px;
-  font-size: 23px;
+  margin: 0 0 6px;
+  font-size: 24px;
   font-weight: 800;
 }
 
 .member-card .num {
+  margin: 0;
   color: rgba(255, 255, 255, 0.82);
   font-size: 13px;
   font-weight: 600;
 }
 
-.member-card .mark {
-  padding: 7px 10px;
-  border: 1px solid rgba(248, 223, 159, 0.6);
-  border-radius: var(--r-s);
-  color: #f4dd9b;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1px;
+.member-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(240, 212, 136, 0.28);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.78);
 }
 
+.member-card .valid {
+  color: var(--purple-dark);
+  background: #f0d488;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  font-weight: 800;
+}
+
+/* stat: 枠なし。区切りはヘアライン1本のみ */
 .stat-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 14px 0;
+  margin: 4px 0 6px;
 }
 
 .stat-row article {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  padding: 16px 4px;
+}
+
+.stat-row article + article {
+  border-left: 1px solid var(--line-soft);
+  padding-left: 18px;
 }
 
 .stat-row span {
@@ -517,18 +550,31 @@ svg {
 .stat-row strong {
   display: block;
   margin-top: 6px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
 }
 
-/* request panel */
+.stat-row .bar {
+  height: 4px;
+  margin-top: 10px;
+  border-radius: var(--r-pill);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.stat-row .bar i {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--purple);
+}
+
+/* request: 主CTA領域。面の濃淡のみで枠なし */
 .request-panel {
-  margin-bottom: 14px;
-  padding: 20px 16px 18px;
-  border: 1px solid var(--line-strong);
-  border-top: 3px solid var(--green);
+  margin-bottom: 18px;
+  padding: 20px 16px 16px;
   border-radius: var(--r-l);
-  background: var(--paper-tint);
+  background: var(--purple-soft);
   text-align: center;
 }
 
@@ -541,13 +587,13 @@ svg {
 
 .request-button {
   width: 100%;
-  min-height: 128px;
+  min-height: 126px;
   display: grid;
   place-items: center;
   gap: 4px;
   border-radius: var(--r-l);
   color: #fff;
-  background: var(--green);
+  background: var(--purple);
   font-size: 25px;
   font-weight: 800;
   line-height: 1.3;
@@ -560,41 +606,32 @@ svg {
 }
 
 .request-button:hover {
-  background: var(--green-dark);
+  background: var(--purple-dark);
 }
 
 .request-panel .note {
-  margin: 12px 0 0;
+  margin: 12px 6px 2px;
   color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
 }
 
-/* registered minimal info */
+/* 登録済み: 枠なし、ヘアライン区切りの行リスト */
 .reg-list {
-  margin-bottom: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
-  overflow: hidden;
+  margin-bottom: 18px;
 }
 
 .reg-list h4 {
-  margin: 0;
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--line-soft);
-  font-size: 14px;
+  margin: 0 0 4px;
+  color: var(--purple);
+  font-size: 12px;
   font-weight: 800;
-  background: var(--paper-soft);
+  letter-spacing: 0.03em;
 }
 
 .reg-list div {
-  padding: 12px 16px;
+  padding: 12px 0;
   border-top: 1px solid var(--line-soft);
-}
-
-.reg-list div:first-of-type {
-  border-top: 0;
 }
 
 .reg-list span {
@@ -610,26 +647,25 @@ svg {
   font-weight: 600;
 }
 
-/* readiness mini */
+/* readiness: 軽い面のみ */
 .ready-mini {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
+  padding: 14px;
   border-radius: var(--r-m);
   background: var(--paper-soft);
 }
 
 .ready-mini .badge {
   flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   display: grid;
   place-items: center;
   border-radius: var(--r-pill);
-  color: var(--green-dark);
-  background: var(--green-soft);
+  color: var(--purple-dark);
+  background: var(--purple-soft);
   font-size: 15px;
   font-weight: 800;
 }
@@ -650,7 +686,7 @@ svg {
   inset: 85px 0 0;
   display: none;
   overflow-y: auto;
-  padding: 26px 20px;
+  padding: 26px 22px;
   text-align: center;
   background: var(--paper);
 }
@@ -666,14 +702,14 @@ svg {
   display: grid;
   place-items: center;
   border-radius: var(--r-pill);
-  background: var(--green-soft);
+  background: var(--purple-soft);
 }
 
 .calm-mark span {
   width: 46px;
   height: 46px;
   border-radius: var(--r-pill);
-  background: var(--green);
+  background: var(--purple);
   opacity: 0.9;
   animation: calm 3.2s var(--ease) infinite;
 }
@@ -692,7 +728,7 @@ svg {
 
 .after .receipt {
   margin: 0 0 6px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -721,23 +757,20 @@ svg {
   gap: 10px;
   border-radius: var(--r-pill);
   color: #fff;
-  background: var(--green);
+  background: var(--purple);
   text-decoration: none;
   font-size: 16px;
   font-weight: 800;
 }
 
 .call-button:hover {
-  background: var(--green-dark);
+  background: var(--purple-dark);
 }
 
+/* status: 枠なし、ヘアライン区切り */
 .status-steps {
-  margin: 16px 0;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  margin: 18px 0;
   text-align: left;
-  overflow: hidden;
 }
 
 .status-steps div {
@@ -745,7 +778,6 @@ svg {
   display: flex;
   align-items: center;
   gap: 11px;
-  padding: 0 16px;
   border-top: 1px solid var(--line-soft);
   color: var(--muted);
   font-size: 14px;
@@ -765,32 +797,31 @@ svg {
 
 .status-steps .done span,
 .status-steps .active span {
-  border-color: var(--green);
-  background: var(--green);
+  border-color: var(--purple);
+  background: var(--purple);
 }
 
 .status-steps .active {
-  color: var(--green-dark);
+  color: var(--purple-dark);
 }
 
+/* shared: 軽い面のみ */
 .shared {
-  margin-bottom: 14px;
-  padding: 16px;
-  border: 1px solid var(--line);
+  margin-bottom: 16px;
+  padding: 16px 16px 6px;
   border-radius: var(--r-m);
-  background: var(--paper);
+  background: var(--paper-soft);
   text-align: left;
 }
 
 .shared h4 {
-  margin: 0 0 12px;
-  font-size: 15px;
+  margin: 0 0 6px;
+  color: var(--purple);
+  font-size: 12px;
   font-weight: 800;
 }
 
 .shared dl {
-  display: grid;
-  gap: 11px;
   margin: 0;
 }
 
@@ -798,6 +829,8 @@ svg {
   display: grid;
   grid-template-columns: 78px 1fr;
   gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line-soft);
 }
 
 .shared dt {
@@ -814,17 +847,15 @@ svg {
 .quiet-button {
   width: 100%;
   min-height: 44px;
-  border: 1px solid var(--line);
   border-radius: var(--r-m);
   color: var(--muted);
-  background: var(--paper);
+  background: var(--paper-tint);
   font-size: 13px;
   font-weight: 700;
 }
 
 .quiet-button:hover {
-  border-color: var(--line-strong);
-  background: var(--paper-soft);
+  background: var(--purple-soft);
 }
 
 /* ---------------- Staff mobile ---------------- */
@@ -833,12 +864,14 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .staff-top .small {
   margin: 0 0 2px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 11px;
   font-weight: 800;
 }
@@ -854,10 +887,9 @@ svg {
   display: inline-flex;
   align-items: center;
   padding: 0 12px;
-  border: 1px solid var(--line-strong);
   border-radius: var(--r-pill);
-  color: var(--green-dark);
-  background: var(--green-soft);
+  color: var(--purple-dark);
+  background: var(--purple-soft);
   font-size: 12px;
   font-weight: 800;
   white-space: nowrap;
@@ -866,7 +898,6 @@ svg {
 .match-card {
   margin-bottom: 14px;
   padding: 14px 16px;
-  border: 1px solid var(--line);
   border-radius: var(--r-m);
   background: var(--paper-soft);
 }
@@ -889,18 +920,18 @@ svg {
   font-size: 12px;
 }
 
+/* 次の行動: 唯一の強調。面＋左罫線のみ */
 .next-action {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding: 16px;
-  border: 1px solid var(--line-strong);
-  border-left: 3px solid var(--green);
-  border-radius: var(--r-m);
-  background: var(--paper-tint);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 var(--r-m) var(--r-m) 0;
+  background: var(--purple-soft);
 }
 
 .next-action .label {
   margin: 0 0 6px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -927,32 +958,34 @@ svg {
   gap: 9px;
   border-radius: var(--r-m);
   color: #fff;
-  background: var(--green);
+  background: var(--purple);
   text-decoration: none;
   font-size: 15px;
   font-weight: 800;
 }
 
 .action-call:hover {
-  background: var(--green-dark);
+  background: var(--purple-dark);
 }
 
+/* judge: 枠なし2分割、区切りはヘアライン1本 */
 .judge-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .judge-row article {
-  padding: 13px 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  padding: 4px 0;
+}
+
+.judge-row article + article {
+  border-left: 1px solid var(--line-soft);
+  padding-left: 16px;
 }
 
 .judge-row span {
-  color: var(--green);
+  color: var(--purple);
   font-size: 11px;
   font-weight: 800;
 }
@@ -970,32 +1003,16 @@ svg {
   line-height: 1.5;
 }
 
+/* 未確認: 枠なし、ヘアライン区切りの行リスト */
 .unconfirmed {
-  margin-bottom: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
-  overflow: hidden;
+  margin-bottom: 16px;
 }
 
 .unconfirmed h4 {
-  margin: 0;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--line-soft);
-  background: var(--paper-soft);
-  font-size: 13px;
+  margin: 0 0 2px;
+  color: var(--purple);
+  font-size: 12px;
   font-weight: 800;
-}
-
-.unconfirmed li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-top: 1px solid var(--line-soft);
-  color: var(--ink-2);
-  font-size: 13px;
-  font-weight: 600;
 }
 
 .unconfirmed ul {
@@ -1004,8 +1021,15 @@ svg {
   list-style: none;
 }
 
-.unconfirmed li:first-child {
-  border-top: 0;
+.unconfirmed li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .unconfirmed li .tick {
@@ -1017,12 +1041,12 @@ svg {
 }
 
 .unconfirmed li.done {
-  color: var(--green-dark);
+  color: var(--purple-dark);
 }
 
 .unconfirmed li.done .tick {
-  border-color: var(--green);
-  background: var(--green);
+  border-color: var(--purple);
+  background: var(--purple);
 }
 
 .staff-actions {
@@ -1033,20 +1057,18 @@ svg {
 
 .staff-actions button {
   min-height: 46px;
-  border: 1px solid var(--line);
   border-radius: var(--r-m);
-  color: var(--green-dark);
-  background: var(--paper);
+  color: var(--purple-dark);
+  background: var(--paper-tint);
   font-size: 12px;
   font-weight: 800;
 }
 
 .staff-actions button:hover {
-  border-color: var(--line-strong);
-  background: var(--paper-tint);
+  background: var(--purple-soft);
 }
 
-/* ---------------- Staff desktop (browser frame) ---------------- */
+/* ---------------- Staff desktop ---------------- */
 .view-desktop {
   display: block;
 }
@@ -1056,12 +1078,11 @@ svg {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 6px 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   padding: 14px 18px;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--green);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 var(--r-m) var(--r-m) 0;
+  background: var(--purple-soft);
 }
 
 .desk-notice strong {
@@ -1070,7 +1091,7 @@ svg {
 }
 
 .desk-notice span {
-  color: var(--muted);
+  color: var(--ink-2);
   font-size: 13px;
 }
 
@@ -1108,7 +1129,6 @@ svg {
   display: flex;
   align-items: center;
   padding: 0 14px;
-  border: 1px solid var(--line);
   border-radius: var(--r-pill);
   color: var(--muted);
   background: var(--paper);
@@ -1117,7 +1137,7 @@ svg {
 }
 
 .console {
-  padding: 22px;
+  padding: 26px;
 }
 
 .console-head {
@@ -1125,14 +1145,14 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
 }
 
 .console-head .small {
   margin: 0 0 4px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1148,7 +1168,6 @@ svg {
   display: inline-flex;
   align-items: center;
   padding: 0 14px;
-  border: 1px solid var(--line-strong);
   border-radius: var(--r-pill);
   color: var(--muted);
   background: var(--paper-soft);
@@ -1157,27 +1176,21 @@ svg {
 }
 
 .console-status.live {
-  color: var(--green-dark);
-  background: var(--green-soft);
-  border-color: var(--line-strong);
+  color: var(--purple-dark);
+  background: var(--purple-soft);
 }
 
+/* queue は面パネル1枚、項目は枠なし */
 .console-grid {
   display: grid;
-  grid-template-columns: 248px minmax(0, 1fr);
-  gap: 18px;
-}
-
-.queue {
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper-soft);
-  padding: 14px;
+  grid-template-columns: 244px minmax(0, 1fr);
+  gap: 32px;
 }
 
 .queue h4 {
-  margin: 0 0 12px;
-  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--purple);
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -1185,20 +1198,14 @@ svg {
   width: 100%;
   display: grid;
   gap: 4px;
-  margin-bottom: 9px;
-  padding: 12px 13px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
+  padding: 14px 0;
+  border-top: 1px solid var(--line-soft);
   text-align: left;
-  background: var(--paper);
-}
-
-.queue-item:last-child {
-  margin-bottom: 0;
+  background: transparent;
 }
 
 .queue-item .id {
-  color: var(--green);
+  color: var(--purple);
   font-size: 11px;
   font-weight: 800;
 }
@@ -1214,25 +1221,21 @@ svg {
 }
 
 .queue-item.muted {
-  opacity: 0.62;
+  opacity: 0.55;
 }
 
 .queue-item.live {
-  border-color: var(--line-strong);
-  border-left: 3px solid var(--green);
-  background: var(--green-soft);
+  margin: 0 -14px;
+  padding: 14px;
+  border-top: 0;
+  border-radius: var(--r-m);
+  background: var(--purple-soft);
   opacity: 1;
 }
 
-.queue-item:hover {
-  border-color: var(--line-strong);
-}
-
+/* case は枠を外し、内部はヘアラインと面で区切る */
 .case {
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
-  padding: 20px;
+  min-width: 0;
 }
 
 .case-head {
@@ -1241,12 +1244,12 @@ svg {
   justify-content: space-between;
   gap: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line);
 }
 
 .case-head .small {
   margin: 0 0 3px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1262,7 +1265,6 @@ svg {
   display: inline-flex;
   align-items: center;
   padding: 0 13px;
-  border: 1px solid var(--line-strong);
   border-radius: var(--r-pill);
   color: var(--muted);
   background: var(--paper-soft);
@@ -1271,22 +1273,26 @@ svg {
 }
 
 .case-head .tag.live {
-  color: var(--green-dark);
-  background: var(--green-soft);
+  color: var(--purple-dark);
+  background: var(--purple-soft);
 }
 
+/* detail: 1枚の面を内部ヘアラインで3分割（箱の連続をやめる） */
 .detail-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
   margin: 18px 0;
+  border-radius: var(--r-m);
+  background: var(--paper-soft);
+  overflow: hidden;
 }
 
 .detail-cards article {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper-soft);
+  padding: 16px;
+}
+
+.detail-cards article + article {
+  border-left: 1px solid var(--line);
 }
 
 .detail-cards span {
@@ -1307,28 +1313,29 @@ svg {
   font-size: 12px;
 }
 
+/* decision: 主のみ面で強調、他は素地＋内部ヘアライン */
 .decision {
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
+  border-radius: var(--r-m);
+  overflow: hidden;
 }
 
 .decision article {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  padding: 16px;
+}
+
+.decision article + article {
+  border-left: 1px solid var(--line-soft);
 }
 
 .decision .primary {
-  border-color: var(--line-strong);
-  border-left: 3px solid var(--green);
-  background: var(--paper-tint);
+  background: var(--purple-soft);
 }
 
 .decision span {
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1348,21 +1355,18 @@ svg {
   line-height: 1.5;
 }
 
+/* 必須確認: 枠なし、見出し＋ヘアライン区切りの1列リスト */
 .must {
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-m);
-  background: var(--paper-soft);
+  margin-bottom: 22px;
 }
 
 .must-head {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .must-head .small {
   margin: 0 0 3px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1374,25 +1378,20 @@ svg {
 }
 
 .must ol {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .must li {
-  min-height: 44px;
+  min-height: 46px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 13px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  background: var(--paper);
+  gap: 11px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
   color: var(--ink-2);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1405,35 +1404,25 @@ svg {
 }
 
 .must li.done {
-  color: var(--green-dark);
+  color: var(--purple-dark);
 }
 
 .must li.done .tick {
-  border-color: var(--green);
-  background: var(--green);
+  border-color: var(--purple);
+  background: var(--purple);
 }
 
+/* 受付票: 外枠なし、横ヘアラインのみ */
 .handoff {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
-  overflow: hidden;
-  margin-bottom: 16px;
+  column-gap: 24px;
+  margin-bottom: 22px;
 }
 
 .handoff div {
-  padding: 13px 16px;
+  padding: 13px 0;
   border-top: 1px solid var(--line-soft);
-  border-right: 1px solid var(--line-soft);
-}
-
-.handoff div:nth-child(-n + 2) {
-  border-top: 0;
-}
-
-.handoff div:nth-child(2n) {
-  border-right: 0;
 }
 
 .handoff span {
@@ -1449,13 +1438,11 @@ svg {
   font-weight: 600;
 }
 
+/* 任意情報: セクションに金の左罫線1本、項目は面1枚を内部分割 */
 .optional {
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid var(--line);
+  margin-bottom: 22px;
+  padding-left: 16px;
   border-left: 3px solid var(--gold);
-  border-radius: var(--r-m);
-  background: var(--paper);
 }
 
 .optional-head {
@@ -1484,7 +1471,6 @@ svg {
   display: inline-flex;
   align-items: center;
   padding: 0 12px;
-  border: 1px solid var(--gold);
   border-radius: var(--r-pill);
   color: var(--gold-ink);
   background: var(--gold-soft);
@@ -1496,14 +1482,17 @@ svg {
 .optional-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  border-radius: var(--r-m);
+  background: var(--paper-soft);
+  overflow: hidden;
 }
 
 .optional-grid article {
-  padding: 12px;
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-m);
-  background: var(--paper-soft);
+  padding: 13px 14px;
+}
+
+.optional-grid article + article {
+  border-left: 1px solid var(--line);
 }
 
 .optional-grid span {
@@ -1519,20 +1508,20 @@ svg {
   font-weight: 600;
 }
 
+/* 寺院: 枠なし、面の上にスロット行 */
 .temple {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid var(--line);
+  gap: 20px;
+  margin-bottom: 22px;
+  padding: 18px;
   border-radius: var(--r-m);
-  background: var(--paper);
+  background: var(--paper-soft);
 }
 
 .temple .small {
   margin: 0 0 4px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
 }
@@ -1552,7 +1541,6 @@ svg {
 
 .temple-slots {
   display: grid;
-  gap: 8px;
 }
 
 .slot {
@@ -1560,74 +1548,70 @@ svg {
   display: flex;
   align-items: center;
   padding: 0 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-m);
+  border-top: 1px solid var(--line-soft);
   color: var(--ink-2);
-  background: var(--paper-soft);
+  background: transparent;
   font-size: 14px;
   font-weight: 700;
 }
 
-.slot.active {
-  color: var(--green-dark);
-  border-color: var(--line-strong);
-  background: var(--green-soft);
+.slot:first-child {
+  border-top: 0;
 }
 
-.slot:hover {
-  border-color: var(--line-strong);
+.slot.active {
+  color: var(--purple-dark);
+  border-top-color: transparent;
+  border-radius: var(--r-s);
+  background: var(--purple-soft);
 }
 
 .console-actions {
   display: flex;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .console-actions button {
   min-height: 48px;
   flex: 1;
-  border: 1px solid var(--line);
   border-radius: var(--r-m);
-  color: var(--green-dark);
-  background: var(--paper);
+  color: var(--purple-dark);
+  background: var(--paper-tint);
   font-size: 14px;
   font-weight: 800;
 }
 
 .console-actions button.primary {
   flex: 1.4;
-  border-color: var(--green);
   color: #fff;
-  background: var(--green);
+  background: var(--purple);
 }
 
 .console-actions button.primary:hover {
-  background: var(--green-dark);
+  background: var(--purple-dark);
 }
 
 .console-actions button:not(.primary):hover {
-  border-color: var(--line-strong);
-  background: var(--paper-tint);
+  background: var(--purple-soft);
 }
 
+/* イベントログ: 面＋左罫線のみ */
 .event-log {
   padding: 16px 18px;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--green);
-  border-radius: var(--r-m);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 var(--r-m) var(--r-m) 0;
   background: var(--paper-soft);
 }
 
 .event-log h5 {
   margin: 0 0 12px;
-  font-size: 14px;
+  color: var(--purple);
+  font-size: 13px;
   font-weight: 800;
 }
 
 .event-log ol {
-  display: grid;
-  gap: 9px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1637,26 +1621,27 @@ svg {
   display: grid;
   grid-template-columns: 78px 1fr;
   gap: 12px;
+  padding: 6px 0;
   font-size: 13px;
   line-height: 1.55;
   color: var(--ink-2);
 }
 
 .event-log time {
-  color: var(--green-dark);
+  color: var(--purple-dark);
   font-weight: 800;
 }
 
-/* ---------------- Sources footer ---------------- */
+/* ---------------- Sources ---------------- */
 .sources {
   max-width: 1280px;
   margin: 8px auto 0;
-  padding: 24px 32px 40px;
+  padding: 24px 32px 44px;
 }
 
 .sources h4 {
   margin: 0 0 6px;
-  color: var(--green);
+  color: var(--purple);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -1682,17 +1667,15 @@ svg {
   display: inline-flex;
   align-items: center;
   padding: 0 14px;
-  border: 1px solid var(--line);
   border-radius: var(--r-pill);
-  background: var(--paper);
+  background: var(--paper-tint);
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
 }
 
 .sources a:hover {
-  border-color: var(--line-strong);
-  background: var(--paper-soft);
+  background: var(--purple-soft);
 }
 
 /* ---------------- Reduced motion ---------------- */
@@ -1721,6 +1704,7 @@ svg {
 
   .console-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
   .detail-cards,
@@ -1764,13 +1748,15 @@ svg {
   .detail-cards,
   .decision,
   .optional-grid,
-  .must ol,
   .handoff {
     grid-template-columns: 1fr;
   }
 
-  .handoff div {
-    border-right: 0;
+  .detail-cards article + article,
+  .decision article + article,
+  .optional-grid article + article {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
 
   .console-actions {
