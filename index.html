@@ -3,129 +3,68 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ティアの会連動 お見送り依頼アプリ 提案プロトタイプ</title>
+    <title>ティアの会連動 お見送り依頼アプリ｜3画面プロトタイプ</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand-lockup">
+    <header class="appbar">
+      <div class="brand">
         <div class="tear-logo" aria-label="TEAR">TEAR</div>
-        <div>
-          <p>ティアの会連動アプリ 提案</p>
-          <h1><span>お見送り依頼を、当日は</span><span>ワンタップに。</span></h1>
+        <div class="brand-text">
+          <p>ティアの会連動 お見送り依頼アプリ</p>
+          <h1>当日は、ワンタップで会館へ。</h1>
         </div>
       </div>
-      <div class="support-strip" aria-label="24時間365日受付">
+      <div class="support" aria-label="24時間365日受付">
         <span>24時間365日受付</span>
         <strong>0120-549453</strong>
       </div>
-      <nav aria-label="プレゼン切替">
-        <a href="#demo">デモ</a>
-        <a href="#first-call">初動設計</a>
-        <a href="#load-layers">入力階層</a>
-        <a href="#operations">管理画面</a>
-        <a href="#research">公式情報</a>
-      </nav>
     </header>
 
-    <main>
-      <section id="demo" class="presentation-hero">
-        <div class="hero-copy">
-          <p class="eyebrow">ティアの会の登録情報から、当日の連絡を一度で</p>
-          <h2><span>会館へつながる</span><span>準備。</span></h2>
-          <p>
-            ティアの会の会員情報、デジタルティアカード、お急ぎ時に電話で伺う内容をつなげ、
-            いざという時は会館へ必要なことだけを静かに届けます。
-          </p>
-          <div class="hero-actions">
-            <button id="startRequestFromHero" type="button">依頼後の画面を見る</button>
-            <a href="#research">調査ベースを見る</a>
+    <main class="stage">
+      <section class="intro">
+        <p class="eyebrow">平常時に備え、もしもの時は迷わせない</p>
+        <h2>「お見送りの依頼」だけで、<br />会館へ正確な初動を渡す。</h2>
+        <p class="lead">
+          平常時に必要な情報を登録しておき、亡くなった直後は「お見送りの依頼」ボタンを一度押すだけ。
+          会館担当者へ正確な初動情報が渡り、ご家族は担当者からの連絡を待つだけにします。
+        </p>
+      </section>
+
+      <div class="view-switch" role="tablist" aria-label="表示画面の切り替え">
+        <button id="tabCustomer" role="tab" type="button" data-view="customer" aria-selected="true">
+          <span class="dot" aria-hidden="true"></span>お客様
+        </button>
+        <button id="tabStaffMobile" role="tab" type="button" data-view="staff-mobile" aria-selected="false">
+          <span class="dot" aria-hidden="true"></span>従業員スマホ
+        </button>
+        <button id="tabStaffDesktop" role="tab" type="button" data-view="staff-desktop" aria-selected="false">
+          <span class="dot" aria-hidden="true"></span>従業員PC
+        </button>
+      </div>
+
+      <section class="view-head">
+        <p class="kicker" id="viewKicker">お客様向け / スマホ</p>
+        <h3 id="viewTitle">当日は押すだけ。以後は、画面も判断も減らす。</h3>
+        <p id="viewDesc">
+          会員証・ポイント・事前準備の上に、ワンタップ依頼を重ねた画面です。依頼後は通常機能を隠し、電話・受付状況・共有内容だけに絞ります。
+        </p>
+      </section>
+
+      <!-- ============ VIEW 1: お客様スマホ ============ -->
+      <section class="view view-phone" data-view-panel="customer">
+        <div class="device-phone" aria-label="お客様向けスマホ画面">
+          <div class="phone-status" aria-hidden="true">
+            <span>9:41</span>
+            <span>5G 100%</span>
           </div>
-        </div>
-        <div class="care-panel" aria-label="安心の設計">
-          <p>最初の数分を、静かに支える。</p>
-          <span>登録済みの内容を会館へ渡したら、画面は最小限に。ご家族は担当者からの連絡を待つだけにします。</span>
-          <div class="hero-metrics" aria-label="設計の重点">
-            <article class="urgent-metric">
-              <span>24h</span>
-              <p>電話へすぐ戻れる安心を残す</p>
-            </article>
-            <article>
-              <span>6項目</span>
-              <p>聞き取りの負担を事前に軽くする</p>
-            </article>
-            <article>
-              <span>1 tap</span>
-              <p>当日は会館へつなぐだけ</p>
-            </article>
-            <article class="phone-fallback">
-              <span>電話</span>
-              <p>不安な時は人の声へすぐ切り替える</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="first-call" class="first-call-map" aria-label="初動負荷を減らす設計">
-        <header>
-          <p>初回電話の負担を減らす</p>
-          <h2>電話で伺う6項目を、当日の聞き取りから外す。</h2>
-          <span>未確定の部分だけ、担当者がやさしく確認します。</span>
-        </header>
-        <div class="call-items">
-          <article><span>01</span><strong>故人様のお名前</strong><p>会員家族情報から候補を提示</p></article>
-          <article><span>02</span><strong>ご連絡者様</strong><p>代表連絡者と続柄を自動表示</p></article>
-          <article><span>03</span><strong>お迎え先</strong><p>病院・施設名、部屋番号を事前登録</p></article>
-          <article><span>04</span><strong>搬送先</strong><p>自宅・会館・安置室の希望を共有</p></article>
-          <article><span>05</span><strong>ご自宅情報</strong><p>住所、電話番号、受入可否を確認済みに</p></article>
-          <article><span>06</span><strong>お迎え時間</strong><p>看護師・施設確認後の候補だけ残す</p></article>
-        </div>
-      </section>
-
-      <section id="load-layers" class="load-layers" aria-label="事前登録の負担階層">
-        <header>
-          <p>準備の負担を分ける</p>
-          <h2>登録は階層化する。ただし目的は、当日会館へ繋ぐことだけ。</h2>
-          <span>必須は6項目だけ。任意情報も、当日の初動連絡に役立つものへ絞ります。</span>
-        </header>
-        <div class="layer-grid">
-          <article class="essential">
-            <span>Level 1</span>
-            <h3>今すぐ役立つ</h3>
-            <p>お急ぎ時の6項目。ワンタップ依頼に使う最低限の情報。</p>
-            <strong>目安 3分</strong>
-          </article>
-          <article>
-            <span>Level 2</span>
-            <h3>会館連絡を確実にする</h3>
-            <p>死亡診断書、退院準備、安置先、宗派・菩提寺。</p>
-            <strong>目安 5分</strong>
-          </article>
-          <article>
-            <span>Level 3</span>
-            <h3>初動後の確認を減らす</h3>
-            <p>第一報、代表者、宗派、搬送補足、会館希望のメモ。</p>
-            <strong>任意</strong>
-          </article>
-          <article>
-            <span>当日</span>
-            <h3>押すだけ</h3>
-            <p>登録済み情報を会館へ送信し、担当者からの連絡を待つ。</p>
-            <strong>1 tap</strong>
-          </article>
-        </div>
-      </section>
-
-      <section class="live-demo" aria-label="連動デモ">
-        <div class="phone">
-          <div class="phone-status"><span>9:41</span><span>5G 100%</span></div>
           <div class="phone-screen">
             <header class="phone-header">
               <div>
-                <p>ティアの会</p>
-                <h2 id="mobileTitle">お見送りサポート</h2>
+                <p class="small">ティアの会</p>
+                <h2 id="customerTitle">お見送りサポート</h2>
               </div>
-              <button class="round-icon" type="button" aria-label="通知">
+              <button class="icon-round" type="button" aria-label="通知">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
                   <path d="M13.73 21a2 2 0 0 1-3.46 0" />
@@ -133,95 +72,100 @@
               </button>
             </header>
 
-            <section id="mobileHome" class="mobile-view active">
-              <article class="tear-card">
+            <div id="customerHome" class="screen-scroll">
+              <article class="member-card">
                 <div>
-                  <p>デジタルティアカード</p>
+                  <p class="small">デジタルティアカード</p>
                   <h3>ゴールド会員</h3>
-                  <span>会員番号 T-0246-8310</span>
+                  <p class="num">会員番号 T-0246-8310</p>
                 </div>
-                <strong>TEAR</strong>
+                <span class="mark">TEAR</span>
               </article>
 
-              <div class="mobile-stats">
-                <article><span>生き方応援ポイント</span><strong>1,284 pt</strong></article>
-                <article><span>事前準備</span><strong>94%</strong></article>
+              <div class="stat-row">
+                <article>
+                  <span>生き方応援ポイント</span>
+                  <strong>1,284 pt</strong>
+                </article>
+                <article>
+                  <span>事前準備</span>
+                  <strong>94%</strong>
+                </article>
               </div>
 
-              <section class="request-card">
-                  <p>もしもの時は、このボタンだけで大丈夫です。</p>
-                <button id="requestButton" class="request-button" type="button">お見送りの依頼</button>
-                <small>会館へつなぐための情報だけを、担当者へ共有します。</small>
+              <section class="request-panel" aria-label="お見送り依頼">
+                <p class="lead-line">もしもの時は、このボタンだけで大丈夫です。</p>
+                <button id="requestButton" class="request-button" type="button">
+                  お見送りの依頼
+                  <small>会館へつなぐ準備を送ります</small>
+                </button>
+                <p class="note">会員情報・搬送希望・宗派・第一報ルールを担当者へ共有します。</p>
               </section>
 
-              <section class="prep-brief">
-                <h3>事前登録済み</h3>
-                <div><span>お迎え先</span><strong>名古屋市立中央病院 7階 712号室</strong></div>
-                <div><span>搬送先</span><strong>ティア名古屋中央 安置室</strong></div>
-                <div><span>宗派・菩提寺</span><strong>浄土真宗 / 光明寺</strong></div>
-                <div><span>第一報</span><strong>家族代表は即時、知人は担当者確認後</strong></div>
-              </section>
-
-              <section class="prep-ladder">
-                <header>
-                  <h3>今日のための準備</h3>
-                  <span>今はLevel 1だけで十分</span>
-                </header>
-                <ol>
-                  <li class="complete"><span></span><strong>必須6項目</strong><small>依頼に使えます</small></li>
-                  <li class="current"><span></span><strong>初回電話の確認</strong><small>あと2項目</small></li>
-                  <li><span></span><strong>詳しい希望</strong><small>あとで登録</small></li>
-                </ol>
-              </section>
-
-              <section class="optional-brief">
+              <section class="reg-list" aria-label="事前登録済みの情報">
+                <h4>事前登録済み</h4>
                 <div>
-                  <h3>任意の補足準備</h3>
-                  <p>当日の初動連絡に必要な範囲だけ、あとから足せます。</p>
+                  <span>お迎え先</span>
+                  <strong>名古屋市立中央病院 7階 712号室</strong>
                 </div>
-                <ul>
-                  <li>代表者</li>
-                  <li>搬送補足</li>
-                  <li>安置希望</li>
-                  <li>宗派補足</li>
-                  <li>第一報先</li>
-                  <li>会館希望</li>
-                </ul>
+                <div>
+                  <span>搬送先</span>
+                  <strong>ティア名古屋中央 安置室</strong>
+                </div>
+                <div>
+                  <span>宗派・菩提寺</span>
+                  <strong>浄土真宗 / 光明寺</strong>
+                </div>
+                <div>
+                  <span>第一報</span>
+                  <strong>家族代表は即時、知人は担当者確認後</strong>
+                </div>
               </section>
-            </section>
 
-            <section id="mobileAfter" class="mobile-view after-request">
-              <div class="calm-light" aria-hidden="true"><span></span></div>
+              <div class="ready-mini">
+                <span class="badge">済</span>
+                <div>
+                  <strong>当日の準備はLevel 1まで完了</strong>
+                  <span>今はここまでで十分です。残りはあとから登録できます。</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="customerAfter" class="after" aria-label="依頼後画面">
+              <div class="calm-mark" aria-hidden="true"><span></span></div>
               <p class="receipt">受付番号 OM-260605-014</p>
               <h3>お知らせを受け取りました</h3>
-              <p class="care-text">今は、すべてを急がなくて大丈夫です。担当者が内容を確認し、まもなくご連絡します。</p>
-              <a class="call-staff" href="tel:0120549453">
+              <p class="care">
+                今は、すべてを急がなくて大丈夫です。<br />担当者からの連絡をお待ちください。
+              </p>
+
+              <a class="call-button" href="tel:0120549453">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.23a2 2 0 0 1 2.11-.45c.9.31 1.84.53 2.8.66A2 2 0 0 1 22 16.92z" />
                 </svg>
                 担当者へ電話
               </a>
-              <section class="minimal-status">
+
+              <section class="status-steps" aria-label="現在の対応状況">
                 <div class="done"><span></span>会館へ依頼送信</div>
                 <div class="active"><span></span>担当者が確認中</div>
                 <div><span></span>折り返し連絡</div>
               </section>
-              <section class="shared-summary">
-                <h4>共有済みの内容</h4>
+
+              <section class="shared" aria-label="担当者へ共有済みの内容">
+                <h4>担当者へ共有済みの内容</h4>
                 <dl>
-                  <div><dt>お迎え先</dt><dd>中央病院 7階 712号室</dd></div>
-                  <div><dt>搬送先</dt><dd>ティア名古屋中央 安置室</dd></div>
+                  <div><dt>希望会館</dt><dd>ティア名古屋中央</dd></div>
+                  <div><dt>搬送先</dt><dd>中央病院から会館 安置室へ</dd></div>
                   <div><dt>宗派</dt><dd>浄土真宗 / 光明寺</dd></div>
-                  <div><dt>第一報</dt><dd>家族代表のみ通知済み</dd></div>
+                  <div><dt>第一報</dt><dd>家族代表へ通知済み。知人は確認後</dd></div>
                 </dl>
               </section>
-              <section class="only-confirm">
-                <h4>あとは確認だけ</h4>
-                <p>担当者からの電話では、状況に応じて未確定の点だけを確認します。</p>
-              </section>
-            </section>
 
-            <nav id="mobileNav" class="phone-nav" aria-label="スマホメニュー">
+              <button id="resetButton" class="quiet-button" type="button">通常画面のデモに戻る</button>
+            </div>
+
+            <nav id="customerNav" class="phone-nav" aria-label="主要メニュー">
               <button class="active" type="button">ホーム</button>
               <button type="button">会員証</button>
               <button type="button">準備</button>
@@ -230,220 +174,290 @@
           </div>
         </div>
 
-        <section id="operations" class="admin-console" aria-label="ティア側管理画面">
-          <header class="console-header">
-            <div>
-              <p>会館スタッフ画面</p>
-              <h2>新規お見送り依頼</h2>
-            </div>
-            <div id="consoleStatus" class="console-status waiting">待機中</div>
-          </header>
-          <div class="message-bar info" role="status">
-            <strong>初動確認のみに絞っています</strong>
-            <span>登録済みの6項目から受付票を作成し、未確定事項だけを上に表示します。</span>
+        <aside class="view-notes" aria-label="この画面の狙い">
+          <h4>この画面の狙い</h4>
+          <ul>
+            <li>
+              <strong>安心して待てること</strong>
+              <span>当日は判断を求めない。大きな依頼ボタンと電話導線だけを前面に置く。</span>
+            </li>
+            <li>
+              <strong>同じ説明を繰り返させない</strong>
+              <span>登録済みの初動情報は確認用に留め、当日は再入力させない。</span>
+            </li>
+            <li class="gold">
+              <strong>依頼後は画面を縮退</strong>
+              <span>通常機能を隠し、受付番号・対応状況・共有内容・電話だけを残す。</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- ============ VIEW 2: 従業員スマホ ============ -->
+      <section class="view view-phone" data-view-panel="staff-mobile" hidden>
+        <div class="device-phone" aria-label="従業員向けスマホ画面">
+          <div class="phone-status" aria-hidden="true">
+            <span>9:41</span>
+            <span>5G 100%</span>
           </div>
+          <div class="phone-screen">
+            <header class="phone-header">
+              <div>
+                <p class="small">会館スタッフ</p>
+                <h2>初動の確認</h2>
+              </div>
+              <button class="icon-round" type="button" aria-label="受付一覧">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </header>
 
-          <div class="console-grid">
-            <aside class="request-queue">
-              <h3>受付キュー</h3>
-              <button id="queueItem" class="queue-item muted" type="button">
-                <span>OM-260605-014</span>
-                <strong>アプリ依頼 待機中</strong>
-                <small>田中 美佐子様 / ゴールド会員</small>
-              </button>
-              <button class="queue-item" type="button">
-                <span>CALL-260605-011</span>
-                <strong>電話相談</strong>
-                <small>病院からの搬送相談</small>
-              </button>
-              <button class="queue-item" type="button">
-                <span>WEB-260605-009</span>
-                <strong>事前相談</strong>
-                <small>資料請求後の折り返し</small>
-              </button>
-            </aside>
-
-            <section class="case-detail">
-              <div class="case-title">
+            <div class="screen-scroll full">
+              <div class="staff-top">
                 <div>
-                  <p>会員照合</p>
-                  <h3>田中 美佐子様 / T-0246-8310</h3>
+                  <p class="small">新規お見送り依頼</p>
+                  <h3>OM-260605-014</h3>
                 </div>
-                <span id="caseBadge">未受付</span>
+                <span class="badge-pill">受付済み</span>
               </div>
 
-              <div class="detail-cards">
-                <article>
-                  <span>会員種別</span>
-                  <strong>ゴールド会員</strong>
-                  <small>デジタルティアカード確認済み</small>
-                </article>
-                <article>
-                  <span>ポイント</span>
-                  <strong>1,284 pt</strong>
-                  <small>割引利用可否は打合せ時に確認</small>
-                </article>
-                <article>
-                  <span>希望会館</span>
-                  <strong>ティア名古屋中央</strong>
-                  <small>安置室候補あり</small>
-                </article>
-              </div>
+              <article class="match-card">
+                <span>会員照合</span>
+                <strong>田中 美佐子様</strong>
+                <small>ゴールド会員 / T-0246-8310 / 希望: ティア名古屋中央</small>
+              </article>
 
-              <section class="decision-board">
-                <article class="primary-decision">
-                  <span>次の行動</span>
-                  <strong>ご連絡者様へ折り返し</strong>
-                  <p>登録済み情報を見ながら、未確定2点だけ確認します。</p>
-                </article>
+              <section class="next-action" aria-label="次の行動">
+                <p class="label">次の行動</p>
+                <strong>ご連絡者様へ折り返し</strong>
+                <p>登録済み情報を見ながら、未確定の2点だけ確認します。</p>
+                <a class="action-call" href="tel:09012345678">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.23a2 2 0 0 1 2.11-.45c.9.31 1.84.53 2.8.66A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  田中 健一様 090-1234-5678
+                </a>
+              </section>
+
+              <div class="judge-row">
                 <article>
                   <span>搬送判断</span>
                   <strong>11:30以降可</strong>
-                  <p>病院側確認済み。車両手配へ進めます。</p>
+                  <small>病院側確認済み</small>
                 </article>
                 <article>
                   <span>安置判断</span>
-                  <strong>会館安置室候補あり</strong>
-                  <p>最終確認後に確定。</p>
+                  <strong>会館安置室候補</strong>
+                  <small>最終確認後に確定</small>
                 </article>
-              </section>
-
-              <section class="must-check">
-                <div>
-                  <p>初動の必須確認</p>
-                  <h3>登録済み情報を見ながら、未確定だけ確認</h3>
-                </div>
-                <ol>
-                  <li class="done"><span></span>ご連絡者様への折り返し先</li>
-                  <li class="done"><span></span>病院・施設の退院準備とお迎え可能時刻</li>
-                  <li><span></span>死亡診断書の受け取り状況</li>
-                  <li><span></span>安置先の最終確認</li>
-                </ol>
-              </section>
-
-              <div class="handoff-table">
-                <div><span>故人様</span><strong>田中 一郎様</strong></div>
-                <div><span>ご連絡者様</span><strong>田中 健一 090-1234-5678</strong></div>
-                <div><span>お迎え先</span><strong>名古屋市立中央病院 7階 712号室</strong></div>
-                <div><span>搬送先</span><strong>ティア名古屋中央 安置室</strong></div>
-                <div><span>お迎え時間</span><strong>看護師確認済み / 11:30以降可</strong></div>
-                <div><span>自宅情報</span><strong>名古屋市中区 / 連絡先登録済み</strong></div>
               </div>
 
-              <section class="optional-detail">
-                <header>
-                  <div>
-                    <p>任意登録情報</p>
-                    <h3>会館へ繋ぐ精度を上げる補足情報</h3>
-                  </div>
-                  <span>6件登録済み</span>
-                </header>
-                <div class="optional-grid">
-                  <article><span>代表者</span><strong>長男へ優先連絡</strong></article>
-                  <article><span>搬送補足</span><strong>病棟入口で看護師確認</strong></article>
-                  <article><span>安置希望</span><strong>会館安置室を優先</strong></article>
-                  <article><span>第一報</span><strong>家族代表のみ即時</strong></article>
-                </div>
+              <section class="unconfirmed" aria-label="未確認事項">
+                <h4>未確認（残り2件）</h4>
+                <ul>
+                  <li class="done"><span class="tick"></span>ご連絡者様の折り返し先</li>
+                  <li class="done"><span class="tick"></span>お迎え可能時刻</li>
+                  <li><span class="tick"></span>死亡診断書の受け取り状況</li>
+                  <li><span class="tick"></span>安置先の最終確認</li>
+                </ul>
               </section>
 
-              <section class="temple-panel">
-                <div>
-                  <p>宗派・寺院確認</p>
-                  <h3>浄土真宗 / 光明寺</h3>
-                  <span>菩提寺優先。不可の場合のみ提携寺院候補へ。</span>
-                </div>
-                <div class="temple-slots">
-                  <button class="slot active" type="button">本日 14:00 確認待ち</button>
-                  <button class="slot" type="button">明日 午前 可</button>
-                  <button class="slot" type="button">友引 不可</button>
-                </div>
-              </section>
-
-              <div class="console-actions">
-                <button id="assignButton" type="button">担当者を割り当て</button>
-                <button id="templeButton" type="button">寺院へ確認</button>
-                <button id="notifyButton" type="button">第一報を確認</button>
+              <div class="staff-actions">
+                <button type="button">担当者割当</button>
+                <button type="button">寺院確認</button>
+                <button type="button">第一報確認</button>
               </div>
-            </section>
+            </div>
           </div>
-        </section>
+        </div>
+
+        <aside class="view-notes" aria-label="この画面の狙い">
+          <h4>この画面の狙い</h4>
+          <ul>
+            <li>
+              <strong>3つに絞る</strong>
+              <span>スマホでは「次の行動・未確認・電話」だけを最優先に置く。</span>
+            </li>
+            <li>
+              <strong>PCの縮小版にしない</strong>
+              <span>長い表ではなく、要点カードと短いリストで1画面に収める。</span>
+            </li>
+            <li class="gold">
+              <strong>外出先でも初動判断</strong>
+              <span>電話しながら見ても読める1項目1判断の粒度にする。</span>
+            </li>
+          </ul>
+        </aside>
       </section>
 
-      <section class="system-flow" aria-label="裏側で起きること">
-        <header>
-          <p>ボタンの裏で進むこと</p>
-          <h2>ユーザーには見せず、裏で進む処理</h2>
-        </header>
-        <div class="flow-columns">
-          <article>
-            <span>01</span>
-            <h3>会員照合</h3>
-            <p>会員番号、会員種別、デジタルティアカード、ポイント情報を照合。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>事前準備スナップショット</h3>
-            <p>お迎え先、搬送先、宗派、菩提寺、第一報ルールを受付時点で固定。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>受付ルーティング</h3>
-            <p>希望会館、現在地、時間帯からコールセンター/会館/搬送担当へ通知。</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>通知の同意制御</h3>
-            <p>家族代表は即時、知人・会社関係は担当者または家族確認後に送信。</p>
-          </article>
+      <!-- ============ VIEW 3: 従業員PC ============ -->
+      <section class="view view-desktop" data-view-panel="staff-desktop" hidden>
+        <div class="desk-notice">
+          <strong>初動確認のみに絞っています</strong>
+          <span>登録済みの6項目から受付票を作成し、未確定事項だけを上に表示します。</span>
         </div>
-        <section class="event-log" aria-label="イベントログ">
-          <h3>イベントログ</h3>
-          <ol id="eventLog">
-            <li><time>09:41:00</time><span>アプリ待機中。事前準備94%、会員情報同期済み。</span></li>
-          </ol>
-        </section>
-      </section>
 
-      <section id="research" class="research">
-        <header>
-          <p>公式情報から反映したこと</p>
-          <h2>ティア公式情報を反映したポイント</h2>
-        </header>
-        <div class="research-grid">
-          <article>
-            <h3>お急ぎ時の6項目</h3>
-            <p>
-              故人様のお名前、ご連絡者様、お迎え先、搬送先、ご自宅情報、お迎え時間を
-              事前登録または当日ペイロードに含める。
-            </p>
-          </article>
-          <article>
-            <h3>24時間365日受付</h3>
-            <p>
-              アプリ依頼後も電話ボタンを残し、API障害時や不安な時は即電話へ戻せる。
-            </p>
-          </article>
-          <article>
-            <h3>ティアの会/TEAR+</h3>
-            <p>
-              会員種別、デジタルティアカード、生き方応援ポイント、優待導線を通常時の会員体験に含める。
-            </p>
-          </article>
-          <article>
-            <h3>葬儀の流れ</h3>
-            <p>
-              ご逝去、葬儀社手配、搬送、安置、打ち合わせ、葬儀準備の流れを管理画面ステータスに変換。
-            </p>
-          </article>
+        <div class="device-desktop" aria-label="従業員向けPC画面">
+          <div class="desk-bar" aria-hidden="true">
+            <div class="desk-dots"><i></i><i></i><i></i></div>
+            <div class="desk-url">console.tear.co.jp / 受付コンソール</div>
+          </div>
+
+          <div class="console">
+            <div class="console-head">
+              <div>
+                <p class="small">会館スタッフ画面</p>
+                <h3>新規お見送り依頼</h3>
+              </div>
+              <span id="consoleStatus" class="console-status">待機中</span>
+            </div>
+
+            <div class="console-grid">
+              <aside class="queue" aria-label="受付キュー">
+                <h4>受付キュー</h4>
+                <button id="queueItem" class="queue-item muted" type="button">
+                  <span class="id">OM-260605-014</span>
+                  <strong>アプリ依頼 待機中</strong>
+                  <small>田中 美佐子様 / ゴールド会員</small>
+                </button>
+                <button class="queue-item" type="button">
+                  <span class="id">CALL-260605-011</span>
+                  <strong>電話相談</strong>
+                  <small>病院からの搬送相談</small>
+                </button>
+                <button class="queue-item" type="button">
+                  <span class="id">WEB-260605-009</span>
+                  <strong>事前相談</strong>
+                  <small>資料請求後の折り返し</small>
+                </button>
+              </aside>
+
+              <section class="case" aria-label="依頼詳細">
+                <div class="case-head">
+                  <div>
+                    <p class="small">会員照合</p>
+                    <h4>田中 美佐子様 / T-0246-8310</h4>
+                  </div>
+                  <span id="caseBadge" class="tag">未受付</span>
+                </div>
+
+                <div class="detail-cards">
+                  <article>
+                    <span>会員種別</span>
+                    <strong>ゴールド会員</strong>
+                    <small>デジタルティアカード確認済み</small>
+                  </article>
+                  <article>
+                    <span>ポイント</span>
+                    <strong>1,284 pt</strong>
+                    <small>割引利用可否は打合せ時に確認</small>
+                  </article>
+                  <article>
+                    <span>希望会館</span>
+                    <strong>ティア名古屋中央</strong>
+                    <small>安置室候補あり</small>
+                  </article>
+                </div>
+
+                <div class="decision">
+                  <article class="primary">
+                    <span>次の行動</span>
+                    <strong>ご連絡者様へ折り返し</strong>
+                    <p>登録済み情報を見ながら、未確定2点だけ確認します。</p>
+                  </article>
+                  <article>
+                    <span>搬送判断</span>
+                    <strong>11:30以降可</strong>
+                    <p>病院側確認済み。車両手配へ。</p>
+                  </article>
+                  <article>
+                    <span>安置判断</span>
+                    <strong>会館安置室候補</strong>
+                    <p>最終確認後に確定。</p>
+                  </article>
+                </div>
+
+                <section class="must" aria-label="初動の必須確認">
+                  <div class="must-head">
+                    <p class="small">初動の必須確認</p>
+                    <h5>登録済み情報を見ながら、未確定だけ確認</h5>
+                  </div>
+                  <ol>
+                    <li class="done"><span class="tick"></span>ご連絡者様への折り返し先</li>
+                    <li class="done"><span class="tick"></span>病院・施設のお迎え可能時刻</li>
+                    <li><span class="tick"></span>死亡診断書の受け取り状況</li>
+                    <li><span class="tick"></span>安置先の最終確認</li>
+                  </ol>
+                </section>
+
+                <div class="handoff" aria-label="受付票">
+                  <div><span>故人様</span><strong>田中 一郎様</strong></div>
+                  <div><span>ご連絡者様</span><strong>田中 健一 090-1234-5678</strong></div>
+                  <div><span>お迎え先</span><strong>名古屋市立中央病院 7階 712号室</strong></div>
+                  <div><span>搬送先</span><strong>ティア名古屋中央 安置室</strong></div>
+                  <div><span>お迎え時間</span><strong>看護師確認済み / 11:30以降可</strong></div>
+                  <div><span>自宅情報</span><strong>名古屋市中区 / 連絡先登録済み</strong></div>
+                </div>
+
+                <section class="optional" aria-label="任意登録情報">
+                  <div class="optional-head">
+                    <div>
+                      <p class="small">任意登録情報</p>
+                      <h5>会館へ繋ぐ精度を上げる補足</h5>
+                    </div>
+                    <span class="count">6件登録済み</span>
+                  </div>
+                  <div class="optional-grid">
+                    <article><span>代表者</span><strong>長男へ優先連絡</strong></article>
+                    <article><span>搬送補足</span><strong>病棟入口で看護師確認</strong></article>
+                    <article><span>安置希望</span><strong>会館安置室を優先</strong></article>
+                    <article><span>第一報</span><strong>家族代表のみ即時</strong></article>
+                  </div>
+                </section>
+
+                <section class="temple" aria-label="宗派・寺院確認">
+                  <div>
+                    <p class="small">宗派・寺院確認</p>
+                    <h5>浄土真宗 / 光明寺</h5>
+                    <p>菩提寺を優先。不可の場合のみ提携寺院候補へ。</p>
+                  </div>
+                  <div class="temple-slots">
+                    <span class="slot active">本日 14:00 確認待ち</span>
+                    <span class="slot">明日 午前 可</span>
+                    <span class="slot">友引 不可</span>
+                  </div>
+                </section>
+
+                <div class="console-actions">
+                  <button id="assignButton" class="primary" type="button">担当者を割り当て</button>
+                  <button id="templeButton" type="button">寺院へ確認</button>
+                  <button id="notifyButton" type="button">第一報を確認</button>
+                </div>
+
+                <section class="event-log" aria-label="イベントログ">
+                  <h5>イベントログ</h5>
+                  <ol id="eventLog">
+                    <li><time>09:41:00</time><span>アプリ待機中。事前準備94%、会員情報同期済み。</span></li>
+                  </ol>
+                </section>
+              </section>
+            </div>
+          </div>
         </div>
-        <ul class="source-list">
-          <li><a href="https://www.tear.co.jp/hurry" target="_blank" rel="noreferrer">ティア公式: お急ぎの方へ</a></li>
-          <li><a href="https://www.tear.co.jp/member" target="_blank" rel="noreferrer">ティア公式: 「ティアの会」のご案内</a></li>
-          <li><a href="https://www.tear.co.jp/yutai/about/" target="_blank" rel="noreferrer">ティア公式: TEAR+とは</a></li>
-          <li><a href="https://www.tear.co.jp/knowledge/bereaved/flow" target="_blank" rel="noreferrer">ティア公式: 葬儀・葬式の流れ</a></li>
-        </ul>
       </section>
     </main>
+
+    <footer class="sources">
+      <h4>公式情報から反映したこと</h4>
+      <p>ティア公式の導線・受付内容を参照し、初動の6項目と会員体験に反映しています。</p>
+      <ul>
+        <li><a href="https://www.tear.co.jp/hurry" target="_blank" rel="noreferrer">ティア公式: お急ぎの方へ</a></li>
+        <li><a href="https://www.tear.co.jp/member" target="_blank" rel="noreferrer">ティア公式: 「ティアの会」のご案内</a></li>
+        <li><a href="https://www.tear.co.jp/yutai/about/" target="_blank" rel="noreferrer">ティア公式: TEAR+とは</a></li>
+        <li><a href="https://www.tear.co.jp/knowledge/bereaved/flow" target="_blank" rel="noreferrer">ティア公式: 葬儀・葬式の流れ</a></li>
+      </ul>
+    </footer>
 
     <script src="./app.js"></script>
   </body>
