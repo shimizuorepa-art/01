@@ -378,8 +378,6 @@ svg {
 
 .phone-screen {
   position: relative;
-  height: 752px;
-  overflow: hidden;
   background: var(--paper);
 }
 
@@ -421,19 +419,14 @@ svg {
 }
 
 .screen-scroll {
-  position: absolute;
-  inset: 85px 0 72px;
-  overflow-y: auto;
   padding: 14px 22px 22px;
 }
 
 .screen-scroll.full {
-  inset: 85px 0 0;
+  padding: 14px 22px 22px;
 }
 
 .phone-nav {
-  position: absolute;
-  inset: auto 0 0;
   height: 72px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -682,10 +675,7 @@ svg {
 
 /* ---------------- Customer: after-request ---------------- */
 .after {
-  position: absolute;
-  inset: 85px 0 0;
   display: none;
-  overflow-y: auto;
   padding: 26px 22px;
   text-align: center;
   background: var(--paper);
