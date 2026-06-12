@@ -99,6 +99,18 @@ svg {
   stroke-linejoin: round;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 :focus-visible {
   outline: 3px solid rgba(100, 0, 135, 0.4);
   outline-offset: 2px;
@@ -452,6 +464,21 @@ svg {
   color: var(--purple);
 }
 
+.phone-nav .contact-tab {
+  color: var(--gold-ink);
+  background: var(--gold-soft);
+}
+
+.phone-nav .contact-tab:hover {
+  color: var(--purple-dark);
+  background: var(--purple-soft);
+}
+
+.phone-nav .contact-tab svg {
+  width: 22px;
+  height: 22px;
+}
+
 /* ---------------- Customer: member card (主役カードは1枚だけ強い) ---------------- */
 .member-card {
   padding: 20px 22px 16px;
@@ -562,51 +589,79 @@ svg {
   background: var(--purple);
 }
 
-/* request: 主CTA領域。面の濃淡のみで枠なし */
-.request-panel {
-  margin-bottom: 18px;
-  padding: 20px 16px 16px;
-  border-radius: var(--r-l);
-  background: var(--purple-soft);
-  text-align: center;
-}
-
-.request-panel .lead-line {
-  margin: 0 0 12px;
-  color: var(--ink-2);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.request-button {
-  width: 100%;
-  min-height: 126px;
+.request-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
   display: grid;
-  place-items: center;
-  gap: 4px;
+  place-items: end center;
+  padding: 18px;
+  background: rgba(36, 26, 43, 0.28);
+}
+
+.request-modal[hidden] {
+  display: none;
+}
+
+.request-dialog {
+  width: 100%;
+  padding: 20px;
   border-radius: var(--r-l);
+  background: var(--paper);
+  box-shadow: 0 18px 48px rgba(36, 26, 43, 0.18);
+}
+
+.request-dialog .dialog-kicker {
+  margin: 0 0 4px;
+  color: var(--gold-ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.request-dialog h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.request-dialog p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.dialog-actions button {
+  min-height: 46px;
+  border-radius: var(--r-m);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.dialog-cancel {
+  color: var(--muted);
+  background: var(--paper-tint);
+}
+
+.dialog-confirm {
   color: #fff;
   background: var(--purple);
-  font-size: 25px;
-  font-weight: 800;
-  line-height: 1.3;
 }
 
-.request-button small {
-  font-size: 12px;
-  font-weight: 700;
-  opacity: 0.85;
+.dialog-cancel:hover {
+  background: var(--purple-soft);
 }
 
-.request-button:hover {
+.dialog-confirm:hover {
   background: var(--purple-dark);
-}
-
-.request-panel .note {
-  margin: 12px 6px 2px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
 }
 
 /* 登録済み: 枠なし、ヘアライン区切りの行リスト */
@@ -614,26 +669,67 @@ svg {
   margin-bottom: 18px;
 }
 
-.reg-list h4 {
-  margin: 0 0 4px;
+.reg-toggle {
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+}
+
+.reg-toggle span {
+  min-width: 0;
+}
+
+.reg-toggle strong {
+  display: block;
   color: var(--purple);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.03em;
 }
 
-.reg-list div {
-  padding: 12px 0;
-  border-top: 1px solid var(--line-soft);
-}
-
-.reg-list span {
+.reg-toggle small {
+  display: block;
+  margin-top: 2px;
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
 }
 
-.reg-list strong {
+.reg-toggle svg {
+  flex: 0 0 auto;
+  color: var(--purple);
+  transition: transform var(--dur) var(--ease);
+}
+
+.reg-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.reg-details[hidden] {
+  display: none;
+}
+
+.reg-details div {
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.reg-details span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reg-details strong {
   display: block;
   margin-top: 3px;
   font-size: 14px;
@@ -650,17 +746,26 @@ svg {
   background: var(--paper-soft);
 }
 
-.ready-mini .badge {
+.ready-mini .progress-ring {
+  --progress: 310deg;
   flex: 0 0 auto;
   width: 46px;
   height: 46px;
   display: grid;
   place-items: center;
   border-radius: var(--r-pill);
-  color: var(--purple-dark);
-  background: var(--purple-soft);
-  font-size: 15px;
-  font-weight: 800;
+  background: conic-gradient(
+    var(--line-strong) 0 var(--progress),
+    var(--line-soft) var(--progress) 360deg
+  );
+}
+
+.ready-mini .progress-ring span {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--paper-soft);
+  box-shadow: inset 0 0 0 1px rgba(216, 205, 224, 0.72);
 }
 
 .ready-mini strong {

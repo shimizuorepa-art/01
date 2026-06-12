@@ -35,6 +35,11 @@ const customerAfter = document.getElementById("customerAfter");
 const customerNav = document.getElementById("customerNav");
 const customerTitle = document.getElementById("customerTitle");
 const requestButton = document.getElementById("requestButton");
+const requestConfirm = document.getElementById("requestConfirm");
+const cancelRequestButton = document.getElementById("cancelRequestButton");
+const confirmRequestButton = document.getElementById("confirmRequestButton");
+const registeredToggle = document.getElementById("registeredToggle");
+const registeredDetails = document.getElementById("registeredDetails");
 const resetButton = document.getElementById("resetButton");
 
 const consoleStatus = document.getElementById("consoleStatus");
@@ -86,7 +91,20 @@ tabs.forEach((tab) => {
 });
 
 // ---- customer request flow ----
+function openRequestConfirm() {
+  if (!requestConfirm) return;
+  requestConfirm.hidden = false;
+  confirmRequestButton?.focus();
+}
+
+function closeRequestConfirm() {
+  if (!requestConfirm) return;
+  requestConfirm.hidden = true;
+  requestButton?.focus();
+}
+
 function activateRequest({ sync = true } = {}) {
+  if (requestConfirm) requestConfirm.hidden = true;
   customerHome.style.display = "none";
   customerAfter.classList.add("active");
   customerNav.hidden = true;
@@ -111,6 +129,7 @@ function activateRequest({ sync = true } = {}) {
 }
 
 function resetRequest() {
+  if (requestConfirm) requestConfirm.hidden = true;
   customerHome.style.display = "";
   customerAfter.classList.remove("active");
   customerNav.hidden = false;
@@ -118,8 +137,28 @@ function resetRequest() {
   updateUrl("customer", false);
 }
 
-if (requestButton) requestButton.addEventListener("click", () => activateRequest());
+if (requestButton) requestButton.addEventListener("click", openRequestConfirm);
+if (cancelRequestButton) cancelRequestButton.addEventListener("click", closeRequestConfirm);
+if (confirmRequestButton) confirmRequestButton.addEventListener("click", () => activateRequest());
+if (requestConfirm) {
+  requestConfirm.addEventListener("click", (event) => {
+    if (event.target === requestConfirm) closeRequestConfirm();
+  });
+}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && requestConfirm && !requestConfirm.hidden) {
+    closeRequestConfirm();
+  }
+});
 if (resetButton) resetButton.addEventListener("click", resetRequest);
+
+if (registeredToggle && registeredDetails) {
+  registeredToggle.addEventListener("click", () => {
+    const expanded = registeredToggle.getAttribute("aria-expanded") === "true";
+    registeredToggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+    registeredDetails.hidden = expanded;
+  });
+}
 
 // ---- staff desktop: event log ----
 function appendEvent(text) {

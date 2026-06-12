@@ -56,7 +56,7 @@
         <div class="device-phone" aria-label="お客様向けスマホ画面">
           <div class="phone-status" aria-hidden="true">
             <span>9:41</span>
-            <span>5G 100%</span>
+            <span>5G</span>
           </div>
           <div class="phone-screen">
             <header class="phone-header">
@@ -92,46 +92,46 @@
                   <strong>1,284 pt</strong>
                 </article>
                 <article>
-                  <span>事前準備</span>
-                  <strong>94%</strong>
-                  <div class="bar" aria-hidden="true"><i style="width: 94%"></i></div>
+                  <span>準備状況</span>
+                  <strong>確認</strong>
                 </article>
               </div>
 
-              <section class="request-panel" aria-label="お見送り依頼">
-                <p class="lead-line">もしもの時は、このボタンだけで大丈夫です。</p>
-                <button id="requestButton" class="request-button" type="button">
-                  お見送りの依頼
-                  <small>会館へつなぐ準備を送ります</small>
-                </button>
-                <p class="note">会員情報・搬送希望・宗派・第一報ルールを担当者へ共有します。</p>
-              </section>
-
               <section class="reg-list" aria-label="事前登録済みの情報">
-                <h4>事前登録済み</h4>
-                <div>
-                  <span>お迎え先</span>
-                  <strong>名古屋市立中央病院 7階 712号室</strong>
-                </div>
-                <div>
-                  <span>搬送先</span>
-                  <strong>ティア名古屋中央 安置室</strong>
-                </div>
-                <div>
-                  <span>宗派・菩提寺</span>
-                  <strong>浄土真宗 / 光明寺</strong>
-                </div>
-                <div>
-                  <span>第一報</span>
-                  <strong>家族代表は即時、知人は担当者確認後</strong>
+                <button id="registeredToggle" class="reg-toggle" type="button" aria-expanded="false" aria-controls="registeredDetails">
+                  <span>
+                    <strong>事前登録済み</strong>
+                    <small>お迎え先・搬送先など4件</small>
+                  </span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <div id="registeredDetails" class="reg-details" hidden>
+                  <div>
+                    <span>お迎え先</span>
+                    <strong>名古屋市立中央病院 7階 712号室</strong>
+                  </div>
+                  <div>
+                    <span>搬送先</span>
+                    <strong>ティア名古屋中央 安置室</strong>
+                  </div>
+                  <div>
+                    <span>宗派・菩提寺</span>
+                    <strong>浄土真宗 / 光明寺</strong>
+                  </div>
+                  <div>
+                    <span>第一報</span>
+                    <strong>家族代表は即時、知人は担当者確認後</strong>
+                  </div>
                 </div>
               </section>
 
               <div class="ready-mini">
-                <span class="badge">済</span>
+                <span class="progress-ring" aria-hidden="true"><span></span></span>
                 <div>
-                  <strong>当日の準備はLevel 1まで完了</strong>
-                  <span>今はここまでで十分です。残りはあとから登録できます。</span>
+                  <strong>当日の準備状況を確認</strong>
+                  <span>必要な内容を落ち着いて確認できます。追加や変更もあとから行えます。</span>
                 </div>
               </div>
             </div>
@@ -174,8 +174,26 @@
               <button class="active" type="button">ホーム</button>
               <button type="button">会員証</button>
               <button type="button">準備</button>
-              <button type="button">マイページ</button>
+              <button id="requestButton" class="contact-tab" type="button" aria-label="お見送り依頼を確認する">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span class="sr-only">お見送り依頼</span>
+              </button>
             </nav>
+
+            <div id="requestConfirm" class="request-modal" role="dialog" aria-modal="true" aria-labelledby="requestConfirmTitle" hidden>
+              <div class="request-dialog">
+                <p class="dialog-kicker">会館へ連絡</p>
+                <h3 id="requestConfirmTitle">お見送りの依頼を送りますか</h3>
+                <p>登録済みの会員情報・搬送希望・宗派・第一報ルールを会館担当者へ共有します。</p>
+                <div class="dialog-actions">
+                  <button id="cancelRequestButton" class="dialog-cancel" type="button">戻る</button>
+                  <button id="confirmRequestButton" class="dialog-confirm" type="button">送信する</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -203,7 +221,7 @@
         <div class="device-phone" aria-label="従業員向けスマホ画面">
           <div class="phone-status" aria-hidden="true">
             <span>9:41</span>
-            <span>5G 100%</span>
+            <span>5G</span>
           </div>
           <div class="phone-screen">
             <header class="phone-header">
@@ -443,7 +461,7 @@
                 <section class="event-log" aria-label="イベントログ">
                   <h5>イベントログ</h5>
                   <ol id="eventLog">
-                    <li><time>09:41:00</time><span>アプリ待機中。事前準備94%、会員情報同期済み。</span></li>
+                    <li><time>09:41:00</time><span>アプリ待機中。準備状況と会員情報を確認できます。</span></li>
                   </ol>
                 </section>
               </section>
